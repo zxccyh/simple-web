@@ -34,7 +34,7 @@ jobs:
       - name: Check and stop existing deployments
         run: |
           DEPLOYMENTS=$(aws deploy list-deployments \
-            --application-name simple-web-app \
+            --application-name simple-web \
             --deployment-group-name simple-web-deploy-group \
             --include-only-statuses "InProgress" \
             --query 'deployments[]' \
