@@ -18,7 +18,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2 # 사용할 AWS 리전2
+          aws-region: ap-northeast-2 # 사용할 AWS 리전
       - name: Setup SSH Key
         uses: webfactory/ssh-agent@v0.5.3
         with:
