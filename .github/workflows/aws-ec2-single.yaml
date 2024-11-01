@@ -18,16 +18,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2 # 사용할 AWS 리전
-      - name: Deploy using ssh
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.AWS_HOST }}
-          username: ${{ secrets.AWS_USER }}
-          key: ${{ secrets.AWS_KEY }}
-          port: 22
-          script: |
-            ls
+          aws-region: ap-northeast-2 # 사용할 AWS 리전2
       - name: Setup SSH Key
         uses: webfactory/ssh-agent@v0.5.3
         with:
