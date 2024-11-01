@@ -50,10 +50,10 @@ resource "aws_iam_role" "ec2_codedeploy_role" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
+        Action = "sts:AssumeRole" # EC2 인스턴스에서 역할 수임 허용
+        Effect = "Allow" 
         Principal = {
-          Service = "ec2.amazonaws.com"
+          Service = "ec2.amazonaws.com" # EC2 인스턴스에서 역할 수임 허용
         }
       }
     ]
@@ -84,6 +84,7 @@ resource "aws_instance" "nginx_instance" {
   instance_type   = "t2.micro"
   key_name        = aws_key_pair.ec2_key.key_name # AWS에서 생성한 SSH 키 적용
   security_groups = [aws_security_group.nginx_sg.name]
+  iam_instance_profile = aws_iam_instance_profile.ec2_codedeploy_profile.name
 
   # EC2 시작 시 Nginx 설치 및 실행을 위한 User Data
   user_data = <<-EOF
