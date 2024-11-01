@@ -1,4 +1,4 @@
-## ec2 s3 deploy5
+## ec2 s3 deploy6
 name: Deploy to AWS
 on:
   push:
@@ -53,7 +53,7 @@ jobs:
         id: deploy
         run: |
           DEPLOYMENT_ID=$(aws deploy create-deployment \
-            --application-name simple-web-app \
+            --application-name simple-web \
             --deployment-group-name simple-web-deploy-group \
             --s3-location bucket=${{ secrets.S3_BUCKET }},key=deploy.zip,bundleType=zip \
             --output text \
