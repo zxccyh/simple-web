@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "src/**"
+      - "/**"
       - ".github/workflows/**"
 
 jobs:
@@ -48,7 +48,7 @@ jobs:
             # 잠시 대기하여 취소가 완료되도록 함
             sleep 10
           fi
-          
+
       - name: Start CodeDeploy deployment
         id: deploy
         run: |
