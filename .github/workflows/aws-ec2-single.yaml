@@ -28,7 +28,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} "ls -la /home/${{ secrets.AWS_USER }}"
       - name: Copy Files to EC2
         run: |
-          sudo chown -R ec2-user:ec2-user /usr/share/nginx/html
+          ssh -o StrictHostKeyChecking=no ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} "sudo chown -R ec2-user:ec2-user /usr/share/nginx/html"
           scp -o StrictHostKeyChecking=no -r ./* ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }}:/usr/share/nginx/html
       - name: Restart Web Server
         run: |
