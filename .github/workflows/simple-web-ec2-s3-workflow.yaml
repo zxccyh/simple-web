@@ -23,7 +23,7 @@ jobs:
       - name: Create deployment package
         run: |
           pwd
-          cd src/simple-web
+          # cd src/simple-web
           zip -r ../../deploy.zip ./*
 
       - name: Upload to S3
