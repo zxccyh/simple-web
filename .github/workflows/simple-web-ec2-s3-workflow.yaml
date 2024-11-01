@@ -31,6 +31,24 @@ jobs:
         run: |
           aws s3 cp deploy.zip s3://${{ secrets.S3_BUCKET }}/deploy.zip
 
+      - name: Check and stop existing deployments
+        run: |
+          DEPLOYMENTS=$(aws deploy list-deployments \
+            --application-name simple-web-app \
+            --deployment-group-name simple-web-deploy-group \
+            --include-only-statuses "InProgress" \
+            --query 'deployments[]' \
+            --output text)
+          
+          if [ ! -z "$DEPLOYMENTS" ]; then
+            for deployment in $DEPLOYMENTS; do
+              echo "Stopping deployment $deployment"
+              aws deploy stop-deployment --deployment-id $deployment
+            done
+            # 잠시 대기하여 취소가 완료되도록 함
+            sleep 10
+          fi
+          
       - name: Start CodeDeploy deployment
         id: deploy
         run: |
