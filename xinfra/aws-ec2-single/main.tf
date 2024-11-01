@@ -201,7 +201,7 @@ resource "aws_codedeploy_deployment_group" "web_deploy_group" {
   service_role_arn      = aws_iam_role.codedeploy_service_role.arn
 
   deployment_style {
-    deployment_option = "WITH_TRAFFIC_CONTROL"
+    deployment_option = "WITHOUT_TRAFFIC_CONTROL"
     deployment_type   = "IN_PLACE"
   }
 
