@@ -25,10 +25,10 @@ jobs:
           ssh-private-key: ${{ secrets.AWS_KEY }} # EC2 인스턴스의 SSH 키
       - name: List files
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} "ls -la /home/${{ secrets.AWS_USER }}"
+          ssh -v -o StrictHostKeyChecking=no ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} "ls -la /home/${{ secrets.AWS_USER }}"
       - name: Copy Files to EC2
         run: |
-          scp -o StrictHostKeyChecking=no -r ./* ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }}:/usr/share/nginx/html
+          scp -v -o StrictHostKeyChecking=no -r ./* ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }}:/usr/share/nginx/html
       - name: Restart Web Server
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} "sudo systemctl restart nginx || sudo systemctl restart httpd"
+          ssh -v -o StrictHostKeyChecking=no ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} "sudo systemctl restart nginx || sudo systemctl restart httpd"
