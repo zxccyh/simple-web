@@ -32,11 +32,15 @@ jobs:
           aws s3 cp deploy.zip s3://${{ secrets.S3_BUCKET }}/deploy.zip
 
       - name: Start CodeDeploy deployment
+        id: deploy
         run: |
-          aws deploy create-deployment \
+          DEPLOYMENT_ID=$(aws deploy create-deployment \
             --application-name simple-web-app \
             --deployment-group-name simple-web-deploy-group \
-            --s3-location bucket=${{ secrets.S3_BUCKET }},key=deploy.zip,bundleType=zip
+            --s3-location bucket=${{ secrets.S3_BUCKET }},key=deploy.zip,bundleType=zip \
+            --output text \
+            --query 'deploymentId')
+          echo "::set-output name=deployment_id::$DEPLOYMENT_ID"
 
       - name: Wait for deployment to complete
         run: |
