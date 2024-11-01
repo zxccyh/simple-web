@@ -45,7 +45,7 @@ resource "aws_key_pair" "ec2_key" {
 
 # EC2 인스턴스 생성
 resource "aws_instance" "nginx_instance" {
-  ami             = "ami-02c329a4b4aba6a48" # Amazon Linux 2 AMI (리전별로 AMI ID가 다를 수 있음)
+  ami             = "ami-08b09b6acd8d62254" # Amazon Linux 2 AMI (리전별로 AMI ID가 다를 수 있음)
   instance_type   = "t2.micro"
   key_name        = aws_key_pair.ec2_key.key_name # AWS에서 생성한 SSH 키 적용
   security_groups = [aws_security_group.nginx_sg.name]
