@@ -22,6 +22,7 @@ jobs:
 
       - name: Create deployment package
         run: |
+          pwd
           cd src/simple-web
           zip -r ../../deploy.zip ./*
 
