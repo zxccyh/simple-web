@@ -57,7 +57,7 @@ jobs:
             --s3-location bucket=${{ secrets.S3_BUCKET }},key=deploy.zip,bundleType=zip \
             --output text \
             --query 'deploymentId')
-          # echo "::set-output name=deployment_id::$DEPLOYMENT_ID"
+          echo "::set-output name=deployment_id::$DEPLOYMENT_ID"
 
       - name: Wait for deployment to complete
         run: |
