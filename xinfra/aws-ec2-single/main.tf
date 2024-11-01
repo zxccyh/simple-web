@@ -78,6 +78,28 @@ resource "aws_iam_role_policy_attachment" "ec2_s3_policy" {
   role       = aws_iam_role.ec2_codedeploy_role.name
 }
 
+# CodeDeploy Agent를 위한 추가 정책
+resource "aws_iam_role_policy" "codedeploy_agent_policy" {
+  name = "codedeploy-agent-policy"
+  role = aws_iam_role.ec2_codedeploy_role.name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "codedeploy:*",
+          "s3:Get*",
+          "s3:List*",
+          "tag:Get*"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
+}
+
 # EC2 인스턴스 생성
 resource "aws_instance" "nginx_instance" {
   ami             = "ami-08b09b6acd8d62254" # Amazon Linux 2 AMI (리전별로 AMI ID가 다를 수 있음)
