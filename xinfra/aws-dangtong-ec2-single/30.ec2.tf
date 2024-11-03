@@ -54,7 +54,7 @@ output "nginx_instance_public_ip" {
 
 # 출력: SSH 접속에 사용할 Private Key
 output "ssh_private_key_pem" {
-  value       = tls_private_key.example.private_key_pem
+  value       = tls_private_key.ec2_private_key.private_key_pem
   description = "Private key for SSH access"
   sensitive   = true
 }
