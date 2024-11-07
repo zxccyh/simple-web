@@ -28,6 +28,7 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: results.sarif
+          category: javascript-analysis # Specify a unique category
   # deploy:
   #   runs-on: ubuntu-latest
   #   steps:
