@@ -1,4 +1,4 @@
-# GitHub Actions용 IAM 역할 생성
+ # GitHub Actions용 IAM 역할 생성
 resource "aws_iam_role" "github_actions_role" {
   name = "GithubActionsRole"
 
@@ -105,4 +105,4 @@ data "aws_caller_identity" "current" {}
 output "github_actions_role_arn" {
   value       = aws_iam_role.github_actions_role.arn
   description = "ARN of the GitHub Actions IAM Role"
-} 
+}
