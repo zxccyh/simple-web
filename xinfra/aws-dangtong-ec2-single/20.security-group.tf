@@ -1,5 +1,6 @@
 resource "aws_security_group" "nginx_sg" {
   name_prefix = "nginx-sg"
+  vpc_id      = aws_vpc.dangtong-vpc.id 
 
   ingress {
     description = "Allow SSH"
