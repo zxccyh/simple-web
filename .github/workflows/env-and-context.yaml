@@ -30,3 +30,5 @@ jobs:
         run: echo ${{ env.WF_LEVEL_ENV }}
       - name: Test JOB ENV VARS
         run: echo $JOB_LEVEL_ENV
+      - name: TEST STEP ENV VARS
+        run: echo $STEP_LEVEL_ENV
