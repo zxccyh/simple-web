@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test ENV VARS
-        run: echo ${{ env.WF_LEVEL_ENV }}
+        run: echo $WF_LEVEL_ENV
       - name: Test JOB ENV VARS
         run: echo $JOB_LEVEL_ENV
       - name: TEST STEP ENV VARS
