@@ -21,3 +21,4 @@ jobs:
           echo "Inside group 2"
           echo "Inside group 3"
           echo "::endgroup::"
+          echo "outside log"
