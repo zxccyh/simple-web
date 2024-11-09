@@ -19,7 +19,7 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.AWS_KEY}}
-      - name: 3.파일 목록보기
+      - name 3.파일 목록보기
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }}  "ls -al /home/${{ secrets.AWS_USER }}"
       - name: 4.파일 서버로 복사
