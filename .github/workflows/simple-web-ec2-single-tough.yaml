@@ -17,7 +17,7 @@ jobs:
           aws-region: ap-northeast-2
       - name: SSH키 설정
         uses: webfactory/ssh-agent@v0.5.3
-        with
+        with:
           ssh-private-key: ${{ secrets.AWS_KEY}}
       - name: 파일 목록보기
         run: |
