@@ -1,5 +1,4 @@
-## ec2 s3 deploy12
-name: Deploy to AWS
+name: Smart Deploy to AWS
 on:
   push:
     branches: [main]
