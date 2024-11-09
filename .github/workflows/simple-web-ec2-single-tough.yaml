@@ -21,6 +21,4 @@ jobs:
           ssh-private-key: ${{ secrets.AWS_KEY}}
       - name: 파일 목록보기
         run: |
-          ssh -o StrictHostKeyChecking=no \
-          ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} \ 
-          "ls -al /home/${{secrets.AWS_USER}}"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }}  "ls -al /home/${{ secrets.AWS_USER }}"
