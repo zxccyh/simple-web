@@ -1,5 +1,5 @@
 #5
-name: Java CI with Gradle
+name: simple-web-eks-ci
 
 on:
   push:
