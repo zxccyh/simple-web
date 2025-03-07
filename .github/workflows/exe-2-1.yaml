@@ -1,0 +1,25 @@
+name: Multi-Shell Environment Exercise
+on: [push]
+
+jobs:
+  multi-shell-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bash - System Information
+        shell: bash
+        run: uname -a
+        
+      - name: PowerShell - Computer Information
+        shell: pwsh
+        run: Get-ComputerInfo
+        
+      - name: Python - Version Information
+        shell: python
+        run: |
+          import sys
+          print(sys.version)
+          
+      - name: Node.js - Version Information
+        shell: node {0}
+        run: |
+          console.log(process.version)
