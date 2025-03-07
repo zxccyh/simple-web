@@ -11,7 +11,9 @@ jobs:
         
       - name: PowerShell - Computer Information
         shell: pwsh
-        run: Get-ComputerInfo
+        run: |
+          $PSVersionTable
+          Get-Host | Select-Object Version
         
       - name: Python - Version Information
         shell: python
