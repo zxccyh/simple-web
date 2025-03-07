@@ -2,7 +2,7 @@ name: Deploy Simple-Web to AWS EC2 using AWS CLI
 on:
   push:
     branches:
-      - main
+      - start
 jobs:
   deploys:
     runs-on: ubuntu-latest
