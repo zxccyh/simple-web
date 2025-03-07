@@ -12,8 +12,9 @@ jobs:
       - name: PowerShell - Computer Information
         shell: pwsh
         run: |
-          $PSVersionTable
-          Get-Host | Select-Object Version
+          Get-ComputerInfo
+          # $PSVersionTable
+          # Get-Host | Select-Object Version
         
       - name: Python - Version Information
         shell: python
