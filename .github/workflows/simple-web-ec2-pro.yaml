@@ -1,5 +1,5 @@
 ## ec2 s3 deploy12
-name: Deploy to AWS as Smart
+name: Deploy to AWS as Pro
 on:
   push:
     branches: [main]
