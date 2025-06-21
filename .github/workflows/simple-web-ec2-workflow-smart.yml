@@ -26,3 +26,37 @@ jobs:
       - name: 4.S3 아티팩트 업로드
         run: |
           aws s3 cp deploy.zip s3://${{ secrets.AWS_BUCKET }}/deploy.zip
+      - name: 5.현재 진행중인 AWS Deploy ID 가져오고 중단 시킨다. 
+        run: |
+          DEPLOYMENTS=$(aws deploy list-deployments \
+            --application-name simple-web-content \
+            --deployment-group-name simple-web-deploy-group \
+            --include-only-statuses "InProgress" \
+            --query 'deployments[]' \
+            --output text)
+
+          if [ ! -z "$DEPLOYMENTS" ]; then
+            for deployment in $DEPLOYMENTS; do
+              echo "Stopping deployment $deployment"
+              aws deploy stop-deployment --deployment-id $deployment
+            done
+            # 잠시 대기하여 취소가 완료되도록 함
+            sleep 10
+          fi
+
+      - name: 6. AWS Deploy를 통해 배포한다
+        id: deploy
+        run: |
+          DEPLOYMENT_ID=$(aws deploy create-deployment \
+            --application-name simple-web-content \
+            --deployment-group-name simple-web-deploy-group \
+            --s3-location bucket=${{ secrets.S3_BUCKET }},key=deploy.zip,bundleType=zip \
+            --output text \
+            --query 'deploymentId')
+          #echo "::set-output name=deployment_id::$DEPLOYMENT_ID"
+          #echo "{name}=deployment_id" >> $GITHUB_OUTPUT
+          echo "deployment_id=${DEPLOYMENT_ID}" >> $GITHUB_OUTPUT
+
+      - name: Wait for deployment to complete
+        run: |
+          aws deploy wait deployment-successful --deployment-id ${{ steps.deploy.outputs.deployment_id }}
