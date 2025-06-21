@@ -25,4 +25,4 @@ jobs:
 
       - name: 4.S3 아티팩트 업로드
         run: |
-          aws s3 cp deploy.zip s3://${{ secrets.S3_BUCKET }}/deploy.zip
+          aws s3 cp deploy.zip s3://${{ secrets.AWS_BUCKET }}/deploy.zip
