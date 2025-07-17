@@ -45,6 +45,15 @@ jobs:
           path: .
           token: ${{ secrets.PAT }}
 
+# 서비스 리포지토리 체크아웃
+      - name: 10.서비스 리포지토리 체크아웃
+        uses: actions/checkout@v4
+        with:
+          repository: zxccyh/simple-web-platform
+          ref: main
+          path: .
+          token: ${{ secrets.PAT }}
+
       # 이미지 태그 업데이트
       - name: 11.쿠버네티스 매니페스트 파일 이미지 태그 업데이트
         run: |
@@ -62,6 +71,6 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git commit -am "Update image tag to ${{ env.DOCKER_TAG }}"
-          git remote set-url origin https://${{ secrets.PAT }}@github.com/${{ secrets.DOCKER_USERNAME }}/simple-service.git
+          git remote set-url origin https://${{ secrets.PAT }}@github.com/${{ secrets.DOCKER_USERNAME }}/simple-web-platform.git
 
           git push origin main
